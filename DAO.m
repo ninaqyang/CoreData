@@ -119,18 +119,4 @@ static DAO *sharedDAO = nil;
     }
 }
 
-//-(void)deleteProducts {
-//    sqlite3 *companiesAndProductsDB;
-//    sqlite3_stmt *deleteStmt = nil;
-//    
-//    if (sqlite3_open([self.databaseFileName UTF8String], &companiesAndProductsDB) == SQLITE_OK) {
-//        if (deleteStmt == nil) {
-//            const char *sql = "DELETE FROM Product WHERE product = ?";
-//            if (sqlite3_prepare(companiesAndProductsDB, sql, -1, &deleteStmt, NULL) == SQLITE_OK) {
-//                <#statements#>
-//            }
-//        }
-//    }
-//}
-
 @end
