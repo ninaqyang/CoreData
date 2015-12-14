@@ -27,8 +27,16 @@
 		2716E08D1B7262FA00C2E3BE /* xiaomi.png in Resources */ = {isa = PBXBuildFile; fileRef = 2716E0891B7262FA00C2E3BE /* xiaomi.png */; };
 		2716E0991B728EEF00C2E3BE /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2716E0971B728EEF00C2E3BE /* WebViewController.m */; };
 		2716E09A1B728EEF00C2E3BE /* WebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2716E0981B728EEF00C2E3BE /* WebViewController.xib */; };
-		2716E0A31B753E0500C2E3BE /* Company.m in Sources */ = {isa = PBXBuildFile; fileRef = 2716E0A21B753E0500C2E3BE /* Company.m */; };
-		2716E0A61B753E1400C2E3BE /* Product.m in Sources */ = {isa = PBXBuildFile; fileRef = 2716E0A51B753E1400C2E3BE /* Product.m */; };
+		27E5A1C21B83E25B00184709 /* CompanyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 27E5A1C11B83E25B00184709 /* CompanyCell.xib */; };
+		27E5A1C51B84EBCB00184709 /* CompanyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E5A1C41B84EBCB00184709 /* CompanyCell.m */; };
+		27E5A1C91B864FE700184709 /* ProductCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E5A1C71B864FE700184709 /* ProductCell.m */; };
+		27E5A1CA1B864FE700184709 /* ProductCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 27E5A1C81B864FE700184709 /* ProductCell.xib */; };
+		27E5A1CC1B8BCCA600184709 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27E5A1CB1B8BCCA600184709 /* CoreData.framework */; };
+		27E5A1CF1B8BCFED00184709 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 27E5A1CD1B8BCFED00184709 /* DataModel.xcdatamodeld */; };
+		27E5A1FF1B8FA84D00184709 /* CompanyNS.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E5A1FE1B8FA84D00184709 /* CompanyNS.m */; };
+		27E5A2021B8FA94200184709 /* ProductNS.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E5A2011B8FA94200184709 /* ProductNS.m */; };
+		27E5A2051B90CB2600184709 /* Product.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E5A2041B90CB2600184709 /* Product.m */; };
+		27E5A2081B90CB2600184709 /* Company.m in Sources */ = {isa = PBXBuildFile; fileRef = 27E5A2071B90CB2600184709 /* Company.m */; };
 		27F427B61B7E5AD8006F105F /* qcdDemoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 27F427B51B7E5AD8006F105F /* qcdDemoViewController.m */; };
 		48A656B518163BF200746D36 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48A656B418163BF200746D36 /* Foundation.framework */; };
 		48A656B718163BF200746D36 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48A656B618163BF200746D36 /* CoreGraphics.framework */; };
@@ -59,8 +67,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		270893F41B792C7C009E8B37 /* DAO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DAO.h; sourceTree = "<group>"; };
-		270893F51B792C7C009E8B37 /* DAO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DAO.m; sourceTree = "<group>"; };
+		270893F41B792C7C009E8B37 /* DAO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DAO.h; path = ../DAO.h; sourceTree = "<group>"; };
+		270893F51B792C7C009E8B37 /* DAO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DAO.m; path = ../DAO.m; sourceTree = "<group>"; };
 		270893F91B7BCA00009E8B37 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		2716E06E1B7262C400C2E3BE /* apple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = apple.png; path = NavCtrl/Apple/apple.png; sourceTree = "<group>"; };
 		2716E06F1B7262C400C2E3BE /* ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ipad.png; path = NavCtrl/Apple/ipad.png; sourceTree = "<group>"; };
@@ -78,35 +86,47 @@
 		2716E0871B7262FA00C2E3BE /* mi4i.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = mi4i.png; path = NavCtrl/XiaoMi/mi4i.png; sourceTree = "<group>"; };
 		2716E0881B7262FA00C2E3BE /* minote.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = minote.jpg; path = NavCtrl/XiaoMi/minote.jpg; sourceTree = "<group>"; };
 		2716E0891B7262FA00C2E3BE /* xiaomi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = xiaomi.png; path = NavCtrl/XiaoMi/xiaomi.png; sourceTree = "<group>"; };
-		2716E0961B728EEF00C2E3BE /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
-		2716E0971B728EEF00C2E3BE /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
-		2716E0981B728EEF00C2E3BE /* WebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WebViewController.xib; sourceTree = "<group>"; };
-		2716E0A11B753E0500C2E3BE /* Company.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Company.h; sourceTree = "<group>"; };
-		2716E0A21B753E0500C2E3BE /* Company.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Company.m; sourceTree = "<group>"; };
-		2716E0A41B753E1400C2E3BE /* Product.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Product.h; sourceTree = "<group>"; };
-		2716E0A51B753E1400C2E3BE /* Product.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Product.m; sourceTree = "<group>"; };
-		27F427B51B7E5AD8006F105F /* qcdDemoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = qcdDemoViewController.m; sourceTree = "<group>"; };
-		48A656B118163BF200746D36 /* NavCtrl.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NavCtrl.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2716E0961B728EEF00C2E3BE /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WebViewController.h; path = ../WebViewController.h; sourceTree = "<group>"; };
+		2716E0971B728EEF00C2E3BE /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WebViewController.m; path = ../WebViewController.m; sourceTree = "<group>"; };
+		2716E0981B728EEF00C2E3BE /* WebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = WebViewController.xib; path = ../WebViewController.xib; sourceTree = "<group>"; };
+		27E5A1C11B83E25B00184709 /* CompanyCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CompanyCell.xib; path = ../CompanyCell.xib; sourceTree = "<group>"; };
+		27E5A1C31B84EBCB00184709 /* CompanyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CompanyCell.h; path = ../CompanyCell.h; sourceTree = "<group>"; };
+		27E5A1C41B84EBCB00184709 /* CompanyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CompanyCell.m; path = ../CompanyCell.m; sourceTree = "<group>"; };
+		27E5A1C61B864FE700184709 /* ProductCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProductCell.h; path = ../ProductCell.h; sourceTree = "<group>"; };
+		27E5A1C71B864FE700184709 /* ProductCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProductCell.m; path = ../ProductCell.m; sourceTree = "<group>"; };
+		27E5A1C81B864FE700184709 /* ProductCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ProductCell.xib; path = ../ProductCell.xib; sourceTree = "<group>"; };
+		27E5A1CB1B8BCCA600184709 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		27E5A1CE1B8BCFED00184709 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
+		27E5A1FD1B8FA84D00184709 /* CompanyNS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CompanyNS.h; path = ../CompanyNS.h; sourceTree = "<group>"; };
+		27E5A1FE1B8FA84D00184709 /* CompanyNS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CompanyNS.m; path = ../CompanyNS.m; sourceTree = "<group>"; };
+		27E5A2001B8FA94200184709 /* ProductNS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProductNS.h; path = ../ProductNS.h; sourceTree = "<group>"; };
+		27E5A2011B8FA94200184709 /* ProductNS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProductNS.m; path = ../ProductNS.m; sourceTree = "<group>"; };
+		27E5A2031B90CB2600184709 /* Product.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Product.h; path = ../Product.h; sourceTree = "<group>"; };
+		27E5A2041B90CB2600184709 /* Product.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Product.m; path = ../Product.m; sourceTree = "<group>"; };
+		27E5A2061B90CB2600184709 /* Company.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Company.h; path = ../Company.h; sourceTree = "<group>"; };
+		27E5A2071B90CB2600184709 /* Company.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Company.m; path = ../Company.m; sourceTree = "<group>"; };
+		27F427B51B7E5AD8006F105F /* qcdDemoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = qcdDemoViewController.m; path = ../qcdDemoViewController.m; sourceTree = "<group>"; };
+		48A656B118163BF200746D36 /* Core Data.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Core Data.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		48A656B418163BF200746D36 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		48A656B618163BF200746D36 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		48A656B818163BF200746D36 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		48A656BC18163BF200746D36 /* NavCtrl-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "NavCtrl-Info.plist"; sourceTree = "<group>"; };
+		48A656BC18163BF200746D36 /* Core Data-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Core Data-Info.plist"; sourceTree = "<group>"; };
 		48A656BE18163BF200746D36 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		48A656C018163BF200746D36 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		48A656C218163BF200746D36 /* NavCtrl-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NavCtrl-Prefix.pch"; sourceTree = "<group>"; };
+		48A656C218163BF200746D36 /* Core Data-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Core Data-Prefix.pch"; sourceTree = "<group>"; };
 		48A656C318163BF200746D36 /* qcdDemoAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = qcdDemoAppDelegate.h; sourceTree = "<group>"; };
 		48A656C418163BF200746D36 /* qcdDemoAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = qcdDemoAppDelegate.m; sourceTree = "<group>"; };
 		48A656C618163BF200746D36 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		48A656CC18163BF200746D36 /* NavCtrlTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NavCtrlTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		48A656CC18163BF200746D36 /* Core Data.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Core Data.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		48A656CD18163BF200746D36 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		48A656D518163BF200746D36 /* NavCtrlTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "NavCtrlTests-Info.plist"; sourceTree = "<group>"; };
+		48A656D518163BF200746D36 /* Core DataTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Core DataTests-Info.plist"; sourceTree = "<group>"; };
 		48A656D718163BF200746D36 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		48A656D918163BF200746D36 /* NavCtrlTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NavCtrlTests.m; sourceTree = "<group>"; };
-		48A656E318163C1B00746D36 /* qcdDemoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = qcdDemoViewController.h; sourceTree = "<group>"; };
-		48A656E518163C1B00746D36 /* qcdDemoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = qcdDemoViewController.xib; sourceTree = "<group>"; };
-		48A656E818163F8700746D36 /* ChildViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChildViewController.h; sourceTree = "<group>"; };
-		48A656E918163F8700746D36 /* ChildViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChildViewController.m; sourceTree = "<group>"; };
-		48A656EA18163F8700746D36 /* ChildViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChildViewController.xib; sourceTree = "<group>"; };
+		48A656E318163C1B00746D36 /* qcdDemoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = qcdDemoViewController.h; path = ../qcdDemoViewController.h; sourceTree = "<group>"; };
+		48A656E518163C1B00746D36 /* qcdDemoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = qcdDemoViewController.xib; path = ../qcdDemoViewController.xib; sourceTree = "<group>"; };
+		48A656E818163F8700746D36 /* ChildViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ChildViewController.h; path = ../ChildViewController.h; sourceTree = "<group>"; };
+		48A656E918163F8700746D36 /* ChildViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ChildViewController.m; path = ../ChildViewController.m; sourceTree = "<group>"; };
+		48A656EA18163F8700746D36 /* ChildViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ChildViewController.xib; path = ../ChildViewController.xib; sourceTree = "<group>"; };
 		48A656ED1816468000746D36 /* Sunflower.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = Sunflower.gif; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -115,6 +135,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				27E5A1CC1B8BCCA600184709 /* CoreData.framework in Frameworks */,
 				270893FA1B7BCA00009E8B37 /* libsqlite3.dylib in Frameworks */,
 				48A656B718163BF200746D36 /* CoreGraphics.framework in Frameworks */,
 				48A656B918163BF200746D36 /* UIKit.framework in Frameworks */,
@@ -179,40 +200,103 @@
 			name = XiaoMi;
 			sourceTree = "<group>";
 		};
-		48A656A818163BF200746D36 = {
+		27EABA591C1F4A2C00564D33 /* Phone Images */ = {
 			isa = PBXGroup;
 			children = (
+				2716E08E1B7266EE00C2E3BE /* Apple */,
+				2716E0901B72672800C2E3BE /* Nexus */,
+				2716E0911B72674300C2E3BE /* Samsung */,
+				2716E0921B72675B00C2E3BE /* XiaoMi */,
+			);
+			name = "Phone Images";
+			sourceTree = "<group>";
+		};
+		27EABA5A1C1F4A6600564D33 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				48A656E518163C1B00746D36 /* qcdDemoViewController.xib */,
+				48A656EA18163F8700746D36 /* ChildViewController.xib */,
+				2716E0981B728EEF00C2E3BE /* WebViewController.xib */,
+			);
+			name = UI;
+			sourceTree = "<group>";
+		};
+		27EABA5B1C1F4A8900564D33 /* NSObject Products */ = {
+			isa = PBXGroup;
+			children = (
+				27E5A1FD1B8FA84D00184709 /* CompanyNS.h */,
+				27E5A1FE1B8FA84D00184709 /* CompanyNS.m */,
+				27E5A2001B8FA94200184709 /* ProductNS.h */,
+				27E5A2011B8FA94200184709 /* ProductNS.m */,
+			);
+			name = "NSObject Products";
+			sourceTree = "<group>";
+		};
+		27EABA5C1C1F4AAB00564D33 /* Core Data Products */ = {
+			isa = PBXGroup;
+			children = (
+				27E5A1CD1B8BCFED00184709 /* DataModel.xcdatamodeld */,
+				27E5A2061B90CB2600184709 /* Company.h */,
+				27E5A2071B90CB2600184709 /* Company.m */,
+				27E5A2031B90CB2600184709 /* Product.h */,
+				27E5A2041B90CB2600184709 /* Product.m */,
+			);
+			name = "Core Data Products";
+			sourceTree = "<group>";
+		};
+		27EABA5D1C1F4AC900564D33 /* Data Access */ = {
+			isa = PBXGroup;
+			children = (
+				270893F41B792C7C009E8B37 /* DAO.h */,
+				270893F51B792C7C009E8B37 /* DAO.m */,
+			);
+			name = "Data Access";
+			sourceTree = "<group>";
+		};
+		27EABA5E1C1F4AD200564D33 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				27EABA5F1C1F4AED00564D33 /* CollectionView Cells */,
 				48A656E318163C1B00746D36 /* qcdDemoViewController.h */,
 				27F427B51B7E5AD8006F105F /* qcdDemoViewController.m */,
 				48A656E818163F8700746D36 /* ChildViewController.h */,
 				48A656E918163F8700746D36 /* ChildViewController.m */,
 				2716E0961B728EEF00C2E3BE /* WebViewController.h */,
 				2716E0971B728EEF00C2E3BE /* WebViewController.m */,
-				270893F41B792C7C009E8B37 /* DAO.h */,
-				270893F51B792C7C009E8B37 /* DAO.m */,
-				2716E0A11B753E0500C2E3BE /* Company.h */,
-				2716E0A21B753E0500C2E3BE /* Company.m */,
-				2716E0A41B753E1400C2E3BE /* Product.h */,
-				2716E0A51B753E1400C2E3BE /* Product.m */,
-				2716E0981B728EEF00C2E3BE /* WebViewController.xib */,
-				48A656EA18163F8700746D36 /* ChildViewController.xib */,
-				48A656E518163C1B00746D36 /* qcdDemoViewController.xib */,
-				2716E08E1B7266EE00C2E3BE /* Apple */,
-				2716E0901B72672800C2E3BE /* Nexus */,
-				2716E0911B72674300C2E3BE /* Samsung */,
-				2716E0921B72675B00C2E3BE /* XiaoMi */,
+				27EABA5A1C1F4A6600564D33 /* UI */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		27EABA5F1C1F4AED00564D33 /* CollectionView Cells */ = {
+			isa = PBXGroup;
+			children = (
+				27E5A1C31B84EBCB00184709 /* CompanyCell.h */,
+				27E5A1C41B84EBCB00184709 /* CompanyCell.m */,
+				27E5A1C11B83E25B00184709 /* CompanyCell.xib */,
+				27E5A1C61B864FE700184709 /* ProductCell.h */,
+				27E5A1C71B864FE700184709 /* ProductCell.m */,
+				27E5A1C81B864FE700184709 /* ProductCell.xib */,
+			);
+			name = "CollectionView Cells";
+			sourceTree = "<group>";
+		};
+		48A656A818163BF200746D36 = {
+			isa = PBXGroup;
+			children = (
 				48A656BA18163BF200746D36 /* NavCtrl */,
 				48A656D318163BF200746D36 /* NavCtrlTests */,
 				48A656B318163BF200746D36 /* Frameworks */,
 				48A656B218163BF200746D36 /* Products */,
+				27EABA591C1F4A2C00564D33 /* Phone Images */,
 			);
 			sourceTree = "<group>";
 		};
 		48A656B218163BF200746D36 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				48A656B118163BF200746D36 /* NavCtrl.app */,
-				48A656CC18163BF200746D36 /* NavCtrlTests.xctest */,
+				48A656B118163BF200746D36 /* Core Data.app */,
+				48A656CC18163BF200746D36 /* Core Data.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -220,6 +304,7 @@
 		48A656B318163BF200746D36 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				27E5A1CB1B8BCCA600184709 /* CoreData.framework */,
 				270893F91B7BCA00009E8B37 /* libsqlite3.dylib */,
 				48A656B418163BF200746D36 /* Foundation.framework */,
 				48A656B618163BF200746D36 /* CoreGraphics.framework */,
@@ -234,6 +319,10 @@
 			children = (
 				48A656C318163BF200746D36 /* qcdDemoAppDelegate.h */,
 				48A656C418163BF200746D36 /* qcdDemoAppDelegate.m */,
+				27EABA5B1C1F4A8900564D33 /* NSObject Products */,
+				27EABA5C1C1F4AAB00564D33 /* Core Data Products */,
+				27EABA5E1C1F4AD200564D33 /* View Controllers */,
+				27EABA5D1C1F4AC900564D33 /* Data Access */,
 				48A656C618163BF200746D36 /* Images.xcassets */,
 				48A656BB18163BF200746D36 /* Supporting Files */,
 			);
@@ -244,10 +333,10 @@
 			isa = PBXGroup;
 			children = (
 				48A656ED1816468000746D36 /* Sunflower.gif */,
-				48A656BC18163BF200746D36 /* NavCtrl-Info.plist */,
+				48A656BC18163BF200746D36 /* Core Data-Info.plist */,
 				48A656BD18163BF200746D36 /* InfoPlist.strings */,
 				48A656C018163BF200746D36 /* main.m */,
-				48A656C218163BF200746D36 /* NavCtrl-Prefix.pch */,
+				48A656C218163BF200746D36 /* Core Data-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -264,7 +353,7 @@
 		48A656D418163BF200746D36 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				48A656D518163BF200746D36 /* NavCtrlTests-Info.plist */,
+				48A656D518163BF200746D36 /* Core DataTests-Info.plist */,
 				48A656D618163BF200746D36 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
@@ -273,9 +362,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		48A656B018163BF200746D36 /* NavCtrl */ = {
+		48A656B018163BF200746D36 /* Core Data */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 48A656DD18163BF200746D36 /* Build configuration list for PBXNativeTarget "NavCtrl" */;
+			buildConfigurationList = 48A656DD18163BF200746D36 /* Build configuration list for PBXNativeTarget "Core Data" */;
 			buildPhases = (
 				48A656AD18163BF200746D36 /* Sources */,
 				48A656AE18163BF200746D36 /* Frameworks */,
@@ -285,14 +374,14 @@
 			);
 			dependencies = (
 			);
-			name = NavCtrl;
+			name = "Core Data";
 			productName = NavCtrl;
-			productReference = 48A656B118163BF200746D36 /* NavCtrl.app */;
+			productReference = 48A656B118163BF200746D36 /* Core Data.app */;
 			productType = "com.apple.product-type.application";
 		};
-		48A656CB18163BF200746D36 /* NavCtrlTests */ = {
+		48A656CB18163BF200746D36 /* Core DataTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 48A656E018163BF200746D36 /* Build configuration list for PBXNativeTarget "NavCtrlTests" */;
+			buildConfigurationList = 48A656E018163BF200746D36 /* Build configuration list for PBXNativeTarget "Core DataTests" */;
 			buildPhases = (
 				48A656C818163BF200746D36 /* Sources */,
 				48A656C918163BF200746D36 /* Frameworks */,
@@ -303,9 +392,9 @@
 			dependencies = (
 				48A656D218163BF200746D36 /* PBXTargetDependency */,
 			);
-			name = NavCtrlTests;
+			name = "Core DataTests";
 			productName = NavCtrlTests;
-			productReference = 48A656CC18163BF200746D36 /* NavCtrlTests.xctest */;
+			productReference = 48A656CC18163BF200746D36 /* Core Data.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -323,7 +412,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 48A656AC18163BF200746D36 /* Build configuration list for PBXProject "NavCtrl" */;
+			buildConfigurationList = 48A656AC18163BF200746D36 /* Build configuration list for PBXProject "Core Data" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -335,8 +424,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				48A656B018163BF200746D36 /* NavCtrl */,
-				48A656CB18163BF200746D36 /* NavCtrlTests */,
+				48A656B018163BF200746D36 /* Core Data */,
+				48A656CB18163BF200746D36 /* Core DataTests */,
 			);
 		};
 /* End PBXProject section */
@@ -355,11 +444,13 @@
 				48A656E718163C1B00746D36 /* qcdDemoViewController.xib in Resources */,
 				2716E0851B7262F000C2E3BE /* samsung.png in Resources */,
 				2716E08A1B7262FA00C2E3BE /* mi4.jpg in Resources */,
+				27E5A1CA1B864FE700184709 /* ProductCell.xib in Resources */,
 				48A656BF18163BF200746D36 /* InfoPlist.strings in Resources */,
 				2716E07D1B7262E100C2E3BE /* nexus9.png in Resources */,
 				2716E07A1B7262E100C2E3BE /* nexus.png in Resources */,
 				48A656C718163BF200746D36 /* Images.xcassets in Resources */,
 				2716E07B1B7262E100C2E3BE /* nexus5.png in Resources */,
+				27E5A1C21B83E25B00184709 /* CompanyCell.xib in Resources */,
 				2716E0721B7262C400C2E3BE /* apple.png in Resources */,
 				48A656EC18163F8700746D36 /* ChildViewController.xib in Resources */,
 				2716E07C1B7262E100C2E3BE /* nexus6.png in Resources */,
@@ -386,12 +477,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2716E0A61B753E1400C2E3BE /* Product.m in Sources */,
-				2716E0A31B753E0500C2E3BE /* Company.m in Sources */,
+				27E5A1CF1B8BCFED00184709 /* DataModel.xcdatamodeld in Sources */,
+				27E5A2051B90CB2600184709 /* Product.m in Sources */,
+				27E5A1C51B84EBCB00184709 /* CompanyCell.m in Sources */,
+				27E5A2021B8FA94200184709 /* ProductNS.m in Sources */,
+				27E5A1FF1B8FA84D00184709 /* CompanyNS.m in Sources */,
 				2716E0991B728EEF00C2E3BE /* WebViewController.m in Sources */,
 				270893F61B792C7C009E8B37 /* DAO.m in Sources */,
+				27E5A1C91B864FE700184709 /* ProductCell.m in Sources */,
 				48A656C518163BF200746D36 /* qcdDemoAppDelegate.m in Sources */,
 				48A656C118163BF200746D36 /* main.m in Sources */,
+				27E5A2081B90CB2600184709 /* Company.m in Sources */,
 				27F427B61B7E5AD8006F105F /* qcdDemoViewController.m in Sources */,
 				48A656EB18163F8700746D36 /* ChildViewController.m in Sources */,
 			);
@@ -410,7 +506,7 @@
 /* Begin PBXTargetDependency section */
 		48A656D218163BF200746D36 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 48A656B018163BF200746D36 /* NavCtrl */;
+			target = 48A656B018163BF200746D36 /* Core Data */;
 			targetProxy = 48A656D118163BF200746D36 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -516,9 +612,10 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "NavCtrl/NavCtrl-Prefix.pch";
-				INFOPLIST_FILE = "NavCtrl/NavCtrl-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				GCC_PREFIX_HEADER = "NavCtrl/Core Data-Prefix.pch";
+				INFOPLIST_FILE = "NavCtrl/Core Data-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				PRODUCT_NAME = "Core Data";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -530,9 +627,10 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "NavCtrl/NavCtrl-Prefix.pch";
-				INFOPLIST_FILE = "NavCtrl/NavCtrl-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				GCC_PREFIX_HEADER = "NavCtrl/Core Data-Prefix.pch";
+				INFOPLIST_FILE = "NavCtrl/Core Data-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				PRODUCT_NAME = "Core Data";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -548,13 +646,13 @@
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "NavCtrl/NavCtrl-Prefix.pch";
+				GCC_PREFIX_HEADER = "NavCtrl/Core Data-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "NavCtrlTests/NavCtrlTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				INFOPLIST_FILE = "NavCtrlTests/Core DataTests-Info.plist";
+				PRODUCT_NAME = "Core Data";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -571,9 +669,9 @@
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "NavCtrl/NavCtrl-Prefix.pch";
-				INFOPLIST_FILE = "NavCtrlTests/NavCtrlTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				GCC_PREFIX_HEADER = "NavCtrl/Core Data-Prefix.pch";
+				INFOPLIST_FILE = "NavCtrlTests/Core DataTests-Info.plist";
+				PRODUCT_NAME = "Core Data";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -582,7 +680,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		48A656AC18163BF200746D36 /* Build configuration list for PBXProject "NavCtrl" */ = {
+		48A656AC18163BF200746D36 /* Build configuration list for PBXProject "Core Data" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				48A656DB18163BF200746D36 /* Debug */,
@@ -591,7 +689,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		48A656DD18163BF200746D36 /* Build configuration list for PBXNativeTarget "NavCtrl" */ = {
+		48A656DD18163BF200746D36 /* Build configuration list for PBXNativeTarget "Core Data" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				48A656DE18163BF200746D36 /* Debug */,
@@ -600,7 +698,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		48A656E018163BF200746D36 /* Build configuration list for PBXNativeTarget "NavCtrlTests" */ = {
+		48A656E018163BF200746D36 /* Build configuration list for PBXNativeTarget "Core DataTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				48A656E118163BF200746D36 /* Debug */,
@@ -610,6 +708,20 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		27E5A1CD1B8BCFED00184709 /* DataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				27E5A1CE1B8BCFED00184709 /* DataModel.xcdatamodel */,
+			);
+			currentVersion = 27E5A1CE1B8BCFED00184709 /* DataModel.xcdatamodel */;
+			name = DataModel.xcdatamodeld;
+			path = ../DataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 48A656A918163BF200746D36 /* Project object */;
 }

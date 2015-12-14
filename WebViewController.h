@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <WebKit/WebKit.h>
 
-@interface WebViewController : UIViewController
+@interface WebViewController : UIViewController <WKNavigationDelegate>
 
 @property (retain, nonatomic) IBOutlet WKWebView *webView;
 @property (retain, nonatomic) NSURL * url;

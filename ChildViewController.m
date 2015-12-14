@@ -14,123 +14,96 @@
 
 @implementation ChildViewController
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
-
-    // Uncomment the following line to preserve selection between presentations.
-     self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    self.collectionView.backgroundColor = [UIColor colorWithRed:236.0f/255.0f green:240.0f/255.0f blue:241.0f/255.0f alpha:1.0];
     
+    [self.collectionView registerClass:[ProductCell class] forCellWithReuseIdentifier:@"cvCell2"];
+    
+    UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc]init];
+    [flowLayout setItemSize:CGSizeMake(200, 200)];
+    [flowLayout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
+    [self.collectionView setCollectionViewLayout:flowLayout];
+    
+    UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc]initWithTarget:self action:@selector(didLongPressCellToDelete:)];
+    longPress.delegate = self;
+    [self.collectionView addGestureRecognizer:longPress];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    
     [super viewWillAppear:animated];
-    [self.tableView reloadData];
+    
+    if([NSThread isMainThread])
+    NSLog(@"Main Thread");
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.collectionView reloadData];
+    });
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
 
-#pragma mark - Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
+#pragma mark - collection view data source
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
     return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.    
-    return [self.dao.company.products count];
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    return self.chosenCompany.toProduct.count;
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-    }
-
-    Product *p = [self.dao.company.products objectAtIndex:[indexPath row]];
-    cell.textLabel.text = p.productName;
-    cell.imageView.image = [UIImage imageNamed: p.productLogo];
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString *cellIdentifier = @"cvCell2";
+    ProductCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifier forIndexPath:indexPath];
+    ProductNS *product = [self.chosenCompany.toProduct objectAtIndex:indexPath.row];
+    cell.productName.text = product.productName;
+    cell.productLogo.image = [UIImage imageNamed:product.productLogo];
     
     return cell;
 }
 
-
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-
-
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [self.dao.company.products removeObjectAtIndex:indexPath.row ];
-        // Delete the row from the data source
-
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-        [tableView reloadData];
-    }
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-    NSString *stringToMove = self.dao.company.products[fromIndexPath.row];
-    [self.dao.company.products removeObjectAtIndex:fromIndexPath.row];
-    [self.dao.company.products insertObject:stringToMove atIndex:toIndexPath.row];
-}
-
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-
-#pragma mark - Table view delegate
-
-// In a xib-based application, navigation from a table can be handled in -tableView:didSelectRowAtIndexPath:
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Navigation logic may go here, for example:
-    // Create the next view controller.
+- (void)didLongPressCellToDelete:(UILongPressGestureRecognizer *)gesture {
+    CGPoint tapLocation = [gesture locationInView:self.collectionView];
+    NSIndexPath *indexPath = [self.collectionView indexPathForItemAtPoint:tapLocation];
     
-   // DetailViewController *detailViewController = [[DetailViewController alloc] initWithNibName:@"Nib name" bundle:nil];
+    if (indexPath && gesture.state == UIGestureRecognizerStateBegan) {
+        NSLog(@"image with index %ld to be deleted", indexPath.item);
+        self.itemToBeDeleted = indexPath.item;
+        UIAlertView *deleteAlert = [[UIAlertView alloc]initWithTitle:@"Delete?" message:@"Are you sure you want to delete this image?" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Yes", nil];
+        [deleteAlert show];
+    }
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    NSLog(@"selected button index = %ld", buttonIndex);
+    
+    if (buttonIndex == alertView.cancelButtonIndex) {
+        NSLog(@"cancel statement clicked");
+    }
+    else if (buttonIndex == 1) {
+        ProductNS *eachProduct = [self.chosenCompany.toProduct objectAtIndex:(long)self.itemToBeDeleted];
+        NSLog(@"%@", eachProduct);
+        
+        [self.dao deleteProduct:eachProduct.productName];
+        [self.chosenCompany.toProduct removeObject:eachProduct];
+
+        [self.collectionView reloadData];
+    }
+}
+
+#pragma mark - collection view delegate
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
     self.webVC = [[WebViewController alloc]initWithNibName:@"WebViewController" bundle:nil];
     
-    self.webVC.url = [NSURL URLWithString:[self.dao.company.products[indexPath.row] productURL]];
+    ProductNS *p = [self.dao.companyNS.toProduct objectAtIndex:indexPath.row];
+    NSURL *urlToPush = [NSURL URLWithString:p.productURL];
+    self.webVC.url = urlToPush;
     
     [self.navigationController pushViewController:self.webVC animated:YES];
 }
-
 
 @end

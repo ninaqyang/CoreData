@@ -16,12 +16,15 @@
 @implementation WebViewController
 
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
     
+    WKWebViewConfiguration *theConfiguration = [[WKWebViewConfiguration alloc] init];
+    self.webView = [[WKWebView alloc] initWithFrame:self.view.frame configuration:theConfiguration];
+    self.webView.navigationDelegate = self;
     NSURLRequest *urlRequest = [NSURLRequest requestWithURL:self.url];
-    
     [self.webView loadRequest:urlRequest];
-
+    [self.view addSubview:self.webView];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -49,4 +52,8 @@
 }
 */
 
+- (void)dealloc {
+    [_webView release];
+    [super dealloc];
+}
 @end

@@ -14,25 +14,30 @@
 
 @implementation qcdDemoViewController
 
-- (id)initWithStyle:(UITableViewStyle)style {
-    self = [super initWithStyle:style];
-    
-    if (self) {
-    }
-    return self;
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.clearsSelectionOnViewWillAppear = NO;
-    self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    self.collectionView.backgroundColor = [UIColor colorWithRed:236.0f/255.0f green:240.0f/255.0f blue:241.0f/255.0f alpha:1.0];
+    self.title = @"Mobile Device Companies";
     
-    self.title = @"Mobile device makers";
+    self.childVC = [[ChildViewController alloc]initWithNibName:@"ChildViewController" bundle:nil];
+    [self.collectionView registerClass:[CompanyCell class] forCellWithReuseIdentifier:@"cvCell"];
+        
+    UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc]init];
+    [flowLayout setItemSize:CGSizeMake(200, 200)];
+    [flowLayout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
+    [self.collectionView setCollectionViewLayout:flowLayout];
     
     self.dao = [DAO sharedCenter];
     self.childVC.dao = [DAO sharedCenter];
-    [self.dao setCompany];
-    [self.dao setProducts];
+    
+    [self.dao initModelContext];
+    
+    [self.dao loadAllData];
+    
+    if(self.dao.arrayOfNSCompanies.count == 0){
+       [self.dao createCompaniesAndProducts];
+        [self.dao loadAllData];
+    }
 }
 
 -(void)viewDidAppear:(BOOL)animated {
@@ -57,16 +62,16 @@
             
             NSLog(@"lines = %@\n", lines);
             
-            for (int i = 0; i < [self.dao.arrayOfCompany count]; i++) {
+            for (int i = 0; i < [lines count]-1; i++) {
                 NSArray *object = [lines[i] componentsSeparatedByString:@","];
                 
                 NSLog(@"object = %@\n", object);
                 
-                Company *company = self.dao.arrayOfCompany[i];
+                CompanyNS *company = self.dao.arrayOfNSCompanies[i];
                 if(object!=nil){
                     company.stockPrice = [NSString stringWithFormat:@"%@", object[0]];
                     dispatch_async(dispatch_get_main_queue(), ^{
-                        [self.tableView reloadData];
+                        [self.collectionView reloadData];
                     });
                 }
             }
@@ -81,93 +86,42 @@
     
 }
 
-#pragma mark - Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Potentially incomplete method implementation.
+#pragma mark - collection view data source
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
     return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete method implementation.
-    return [self.dao.arrayOfCompany count];
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    return [self.dao.arrayOfNSCompanies count];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
-    }
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString *cellIdentifier = @"cvCell";
+    CompanyCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellIdentifier forIndexPath:indexPath];
+    NSLog(@"%@", self.dao.arrayOfNSCompanies);
     
-    NSLog(@"1row=%lu\n", [indexPath row]);
-    
-    Company * company = [self.dao.arrayOfCompany objectAtIndex:[indexPath row]];
-    cell.textLabel.text = company.companyName;
-    cell.imageView.image = [UIImage imageNamed:company.companyLogo];
-    cell.detailTextLabel.text = company.stockPrice;
-    
-    NSLog(@"2row=%lu\n", [indexPath row]);
-    
+    CompanyNS *company = [self.dao.arrayOfNSCompanies objectAtIndex:indexPath.row];
+    cell.companyName.text = company.companyName;
+    cell.companyImage.image = [UIImage imageNamed:company.companyLogo];
+    cell.stockPrice.text = company.stockPrice;
+
     return cell;
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
+#pragma mark - collection view delegate
 
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-    if (fromIndexPath != toIndexPath) {
-        Company * company = self.dao.arrayOfCompany[fromIndexPath.row];
-        [self.dao.arrayOfCompany removeObjectAtIndex:fromIndexPath.row];
-        [self.dao.arrayOfCompany insertObject:company atIndex:toIndexPath.row];
-        
-//        Company * company = self.dao.stockPriceList[fromIndexPath.row];
-//        [self.dao.stockPriceList removeObjectAtIndex:fromIndexPath.row];
-//        [self.dao.stockPriceList insertObject:stock.stockPrice atIndex:toIndexPath.row];
-    }
-}
-
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-
-
-#pragma mark - Table view delegate
-
-// In a xib-based application, navigation from a table can be handled in -tableView:didSelectRowAtIndexPath:
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+ 
+    self.childVC.title = [self.dao.arrayOfNSCompanies[indexPath.row] companyName];
+    self.childVC.chosenCompany = self.dao.arrayOfNSCompanies[indexPath.row];
     
-    self.childVC.title = [self.dao.arrayOfCompany[indexPath.row] companyName];
-    self.childVC.dao.company = self.dao.arrayOfCompany[indexPath.row];
-    
-    NSLog(@"1 self.childVC.dao.company.products = %@ \n", self.childVC.dao.company.products);
-    
+    self.childVC.products = [[NSMutableArray alloc] initWithArray:self.childVC.dao.companyNS.toProduct];
+    NSLog(@"products = %@", self.childVC.products);
     [self.navigationController pushViewController:self.childVC animated:YES];
-    
 }
 
-
+- (void)dealloc {
+    [UICollectionView release];
+    [super dealloc];
+}
 @end

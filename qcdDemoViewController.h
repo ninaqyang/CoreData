@@ -8,11 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "ChildViewController.h"
-#import "Company.h"
-#import "Product.h"
+#import "CompanyNS.h"
+#import "ProductNS.h"
 #import "DAO.h"
+#import "CompanyCell.h"
 
-@interface qcdDemoViewController : UITableViewController
+@interface qcdDemoViewController : UICollectionViewController <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
 
 @property (nonatomic, retain) NSMutableArray *companyList;
 @property (nonatomic, retain) NSMutableArray *companyListImages;
@@ -22,6 +23,10 @@
 @property (nonatomic, retain) IBOutlet  ChildViewController * childVC;
 
 @property (nonatomic, retain) DAO *dao;
+
+@property (nonatomic, retain) CompanyCell *companyCell;
+
+@property (nonatomic, retain) NSArray *dataArray;
 
 -(void)httpGetRequest;
 
